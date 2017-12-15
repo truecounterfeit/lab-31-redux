@@ -3,43 +3,32 @@
 import './style/main.scss';
 
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDom from 'react-dom'
+import {BrowserRouter} from 'react-router-dom'
+import {Provider} from 'react-redux';
 
-import noteCreateForm from './components/noteCreateForm.js'
-import noteItem from './components/noteItem.js'
-import noteList from './noteList.js'
+import App from './components/app'
 
-class App extends React.Component {
+import createStore from './app/store'; 
 
-    constructor(props) {
+const store = createStore();
+
+class Main extends React.Component {
+
+  constructor(props) {
       super(props);
+  }
 
-      // this.state = {
-      //     content: this.state
-      // }
-      this.app = this.app.bind(this);
-    }
-
-    app() {
-      return {
-        state: this.state,
-        setState: this.setState.bind(this),
-        showErrors: true
-      }
-    }
-
-    render() {
-      console.log('form rendered!');
+  render() {
       return (
-        <form>
-        <div>
-          <noteCreateForm />
-          <noteList />
-        </div>
-        </form>
+          <Provider store={store}>
+              <BrowserRouter>
+                  <App/>
+              </BrowserRouter>
+          </Provider>
       )
-    }
+  }
 
 }
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<Main/>, document.getElementById('root'));
