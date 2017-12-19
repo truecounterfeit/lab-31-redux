@@ -1,35 +1,13 @@
 'use strict';
-import uuid from 'uuid/v4';
+//boilerplate taken from lab
+
+import {combineReducers} from 'redux';
+
+import categoryReducer from '../components/categories/category-reducer';
+import cardReducer from '../components/cards/card-reducer';
 
 
-const initialState =
-  [
-    {
-      id: uuid,
-      timestamp: false,
-      name: false,
-      budget: false,
-    }
-  ];
-
-
-export default (state=initialState, action) => {
-
-    let {type, payload} = action;
-
-    switch ( type ) {
-
-        case "CATEGORY_ADD":
-            return [...state, payload];
-
-         case "CATEGORY_UPDATE":
-            return state.map( (item,i) => item.id === payload.id ? payload : item );
-
-         case "CATEGORY_DELETE":
-            return state.filter( (item,i) => item.id !== payload );
-
-        default:
-            return state;
-
-          }
-}
+export default combineReducers({
+    categories: categoryReducer,
+    cards: cardReducer
+});

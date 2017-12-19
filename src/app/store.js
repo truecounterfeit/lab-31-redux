@@ -1,6 +1,10 @@
 'use strict';
-import {createStore} from 'redux';
+
+//boilerplate taken from lab
+
+import {createStore, applyMiddleware} from 'redux';
 
 import reducer from './reducer';
+import reporter from './middleware/reporter'
 
-export default () => createStore(reducer);
+export default () => createStore(reducer, applyMiddleware(reporter));
