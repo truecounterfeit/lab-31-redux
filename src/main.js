@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 
 import App from './components/app'
 
-import createStore from './app/store'; 
+import createStore from './app/store';
 
 const store = createStore();
 
